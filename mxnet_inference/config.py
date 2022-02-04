@@ -1,3 +1,3 @@
-image_name = 'photo_1.bmp'
-model_name = '../model/model_1.6'
-output_file_name = 'model_output.txt'
+image_name = 'photo.bmp'
+model_prefix = './model/model_1.6'
+output_file_name = './mxnet_inference/model_output.txt'
