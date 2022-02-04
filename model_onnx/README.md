@@ -1,0 +1,1 @@
+Result ONNX ResNet50 model

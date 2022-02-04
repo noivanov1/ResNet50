@@ -6,6 +6,9 @@ from collections import namedtuple
 
 
 def image_preprocessing(image_name: str) -> np.ndarray:
+    """
+    Preprocessing the image for model
+    """
     image = mx.image.imread(image_name)
     image = mx.image.imresize(image, 112, 112)  # resize
     image = image.transpose((2, 0, 1))  # Channel first
@@ -15,6 +18,9 @@ def image_preprocessing(image_name: str) -> np.ndarray:
 
 
 def model_output(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> np.ndarray:
+    """
+    Load MXNet model and return embedding
+    """
     sym, arg_params, aux_params = mx.model.load_checkpoint(model_prefix, epoch)
     model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
     arg_params["data"] = image
@@ -26,6 +32,9 @@ def model_output(ctx: mx.context.Context, model_prefix: str, epoch: int, image: 
 
 
 def write_output(file_name: str, model_out: np.array):
+    """
+    Write embedding to .txt file
+    """
     with open(file_name, 'w') as out:
         for i in range(len(model_out)):
             out.write(str(model_out[i]) + '\n')
