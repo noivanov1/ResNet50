@@ -43,9 +43,9 @@ def write_output(file_name: str, model_out: np.array):
 def main():
     ctx = mx.cpu()
     image = image_preprocessing(config.image_name)
-    model_out = model_output(ctx, config.model_prefix, 0, image)
+    model_out = model_output(ctx, config.mxnet_model_prefix, 0, image)
     write_output(config.output_file_name, model_out)
-
+    print('Done.')
 
 if __name__ == "__main__":
     main()
