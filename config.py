@@ -1,5 +1,6 @@
 # MXNet inference
 image_name = 'photo.bmp'
+image_resize_to = [112, 112]
 mxnet_model_prefix = 'model_mxnet/model'
 output_file_name = 'mxnet_inference.txt'
 

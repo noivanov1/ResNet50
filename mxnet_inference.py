@@ -10,7 +10,7 @@ def image_preprocessing(image_name: str) -> np.ndarray:
     Preprocessing the image for model
     """
     image = mx.image.imread(image_name)
-    image = mx.image.imresize(image, 112, 112)  # resize
+    image = mx.image.imresize(image, config.image_resize_to[0], config.image_resize_to[1])  # resize
     image = image.transpose((2, 0, 1))  # Channel first
     image = image.expand_dims(axis=0)  # batchify
     image = image.astype(dtype='float32')
