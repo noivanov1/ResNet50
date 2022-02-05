@@ -17,21 +17,29 @@ def image_preprocessing(image_name: str) -> np.ndarray:
     return image
 
 
-def model_output(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> np.ndarray:
+def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> mx.module.module.Module:
     """
-    Load MXNet model and return embedding
+    Load MXNet model
     """
     sym, arg_params, aux_params = mx.model.load_checkpoint(model_prefix, epoch)
     model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
     arg_params["data"] = image
     model.bind(for_training=False, data_shapes=[("data", arg_params["data"].shape)])
     model.set_params(arg_params, aux_params, allow_missing=True)
+    print(type(model))
+    return model
+
+
+def model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
+    """
+    Predict embedding
+    """
     Batch = namedtuple("Batch", ["data"])
     model.forward(Batch([image]))
     return np.squeeze(model.get_outputs()[0].asnumpy())
 
 
-def write_output(file_name: str, model_out: np.array):
+def write_output(file_name: str, model_out: np.ndarray):
     """
     Write embedding to .txt file
     """
@@ -43,9 +51,11 @@ def write_output(file_name: str, model_out: np.array):
 def main():
     ctx = mx.cpu()
     image = image_preprocessing(config.image_name)
-    model_out = model_output(ctx, config.mxnet_model_prefix, 0, image)
+    model = get_model(ctx, config.mxnet_model_prefix, 0, image)
+    model_out = model_output(model, image)
     write_output(config.output_file_name, model_out)
     print('Done.')
+
 
 if __name__ == "__main__":
     main()
