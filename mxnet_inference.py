@@ -26,7 +26,6 @@ def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.
     arg_params["data"] = image
     model.bind(for_training=False, data_shapes=[("data", arg_params["data"].shape)])
     model.set_params(arg_params, aux_params, allow_missing=True)
-    print(type(model))
     return model
 
 
