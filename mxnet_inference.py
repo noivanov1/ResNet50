@@ -17,7 +17,8 @@ def image_preprocessing(image_name: str) -> mx.ndarray.ndarray.NDArray:
     return image
 
 
-def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> mx.module.module.Module:
+def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: mx.ndarray.ndarray.NDArray) -> \
+                                                                                        mx.module.module.Module:
     """
     Load MXNet model
     """
@@ -29,7 +30,7 @@ def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.
     return model
 
 
-def model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
+def model_output(model: mx.module.module.Module, image: mx.ndarray.ndarray.NDArray) -> np.ndarray:
     """
     Predict embedding
     """
@@ -52,7 +53,7 @@ def main():
     image = image_preprocessing(config.image_name)
     model = get_model(ctx, config.mxnet_model_prefix, 0, image)
     model_out = model_output(model, image)
-    write_output(config.output_file_name, model_out)
+    write_output(config.mxnet_output_file, model_out)
     print('Done.')
 
 
