@@ -1,9 +1,22 @@
 import sys
 import numpy as np
 import mxnet as mx
+import config
 import os
 from PIL import Image
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
+
+
+def image_preprocessing(image_name: str) -> np.ndarray:
+    """
+    Preprocessing the image for model
+    """
+    image = mx.image.imread(image_name)
+    image = mx.image.imresize(image, config.image_resize_to[0], config.image_resize_to[1])
+    image = image.transpose((2, 0, 1))
+    image = image.expand_dims(axis=0)
+    image = image.astype(dtype='float32')
+    return image
 
 
 def get_model(ctx, model):
@@ -30,7 +43,7 @@ def get_feature(model, aligned):
 
 ctx = mx.cpu()
 # Path to ONNX model
-model_name = '../model/embedder_1.6.onnx'
+model_name = 'model_onnx/converted_model.onnx'
 # Load ONNX model
 model = get_model(ctx, model_name)
 
@@ -52,3 +65,16 @@ open(img_txt, 'w').close()
 with open(img_txt, "a") as file:
     for i in range(len(out)):
         file.write(str(out[i]) + '\n')
+'''
+def main():
+    ctx = mx.cpu()
+    image = image_preprocessing(config.image_name)
+    model = get_model(ctx, config.mxnet_model_prefix, 0, image)
+    model_out = model_output(model, image)
+    write_output(config.output_file_name, model_out)
+    print('Done.')
+
+
+if __name__ == "__main__":
+    main()
+'''
