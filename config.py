@@ -10,3 +10,4 @@ mxnet2onnx_log = 'mxnet2onnx_log.txt'
 conversion_input_size = [1, 3, 112, 112]
 
 # ONNX inference
+input_size = (112, 112)

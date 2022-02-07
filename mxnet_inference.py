@@ -5,7 +5,7 @@ import config
 from collections import namedtuple
 
 
-def image_preprocessing(image_name: str) -> np.ndarray:
+def image_preprocessing(image_name: str) -> mx.ndarray.ndarray.NDArray:
     """
     Preprocessing the image for model
     """
