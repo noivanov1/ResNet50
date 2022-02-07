@@ -1,8 +1,8 @@
-import sys
+
 import numpy as np
 import mxnet as mx
 import config
-import os
+
 from PIL import Image
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 
@@ -21,9 +21,7 @@ def image_preprocessing(image_name: str) -> np.ndarray:
 
 def get_model(ctx, model):
     image_size = (112, 112)
-    # Import ONNX model
     sym, arg_params, aux_params = import_model(model)
-    # Define and binds parameters to the network
     all_layers = sym.get_internals()
     sym = all_layers["fc1_output"]
     model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
@@ -48,7 +46,7 @@ model_name = 'model_onnx/converted_model.onnx'
 model = get_model(ctx, model_name)
 
 img_txt = 'onnx_1.6.txt'
-image = 'photo_1.bmp'
+image = 'photo.bmp'
 
 image = Image.open(image)
 img = np.array(image)
