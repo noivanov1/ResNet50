@@ -42,9 +42,9 @@ def main():
     Model conversion.
     """
     converted_model = conversion_mxnet2onnx(config.mxnet_model_prefix, config.onnx_model_name, config.conversion_input_size)  # noqa
-    print(f"Converted model is {converted_model}")
     log_txt = create_log()
     write_logfile(config.mxnet2onnx_log, log_txt)
+    print(f"Done! Check {converted_model}")
 
 
 if __name__ == "__main__":
