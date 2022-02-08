@@ -24,8 +24,8 @@ def create_log(dist_model: str) -> str:
     """
     headers = [" ", "Framework", "Version"]
     log_table = PrettyTable(headers)
-    log_table.add_row(["Input", "MXNet", mx.__version__])
-    log_table.add_row(["Output", "ONNX", onnx.__version__])
+    log_table.add_row(["Input_model", "MXNet", mx.__version__])
+    log_table.add_row(["Dist_model", "ONNX", onnx.__version__])
     return log_table.get_string()
 
 

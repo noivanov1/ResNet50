@@ -42,7 +42,7 @@ def main():
     loaded_onnx_model = get_model(config.onnx_model_name)
     input_image = image_preprocessing(config.image_name)
     model_out = model_output(loaded_onnx_model, input_image)
-    write_output(config.onnx_output_file, model_out)
+    write_output(config.onnxruntime_output_file, model_out)
     print('Done.')
 
 

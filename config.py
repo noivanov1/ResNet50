@@ -11,4 +11,5 @@ conversion_input_size = [1, 3, 112, 112]
 
 # ONNX inference
 input_size = (112, 112)
-onnx_output_file = 'onnx_inference.txt'
+onnx_mxnet_output_file = 'onnx_mxnet_inference.txt'
+onnxruntime_output_file = 'onnxruntime_inference.txt'

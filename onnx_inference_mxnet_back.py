@@ -55,7 +55,7 @@ def main():
     input_image = image_preprocessing(config.image_name)
     loaded_model = get_model(ctx, config.onnx_model_name, config.input_size)
     model_out = model_output(loaded_model, input_image)
-    write_output(config.onnx_output_file, model_out)
+    write_output(config.onnx_mxnet_output_file, model_out)
     print('Done.')
 
 
