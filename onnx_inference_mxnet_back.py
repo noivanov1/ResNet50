@@ -2,20 +2,9 @@ import numpy as np
 import mxnet as mx
 import config
 
+from tools import preprocess_image
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from collections import namedtuple
-
-
-def preprocess_image(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
-    """
-    Preprocessing the image for model
-    """
-    loaded_image = mx.image.imread(image_name)
-    loaded_image = mx.image.imresize(loaded_image, resize_shape[0], resize_shape[1])
-    loaded_image = loaded_image.transpose((2, 0, 1))
-    loaded_image = loaded_image.expand_dims(axis=0)
-    loaded_image = loaded_image.astype(dtype='float32')
-    return loaded_image
 
 
 def load_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
@@ -36,7 +25,7 @@ def get_model_output(loaded_model: mx.module.module.Module, input_picture: mx.nd
     Predict embedding
     """
     Batch = namedtuple("Batch", ["data"])
-    loaded_model.forward(Batch([input_picture]))
+    loaded_model.forward(Batch([mx.nd.array(input_picture)]))
     embedding = np.squeeze(loaded_model.get_outputs()[0].asnumpy())
     return embedding
 

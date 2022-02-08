@@ -3,39 +3,15 @@ import mxnet as mx
 import config
 
 from collections import namedtuple
+from tools import load_model, preprocess_image
 
 
-def preprocess_image(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
-    """
-    Preprocessing the image for model
-    """
-    image = mx.image.imread(image_name)
-    image = mx.image.imresize(image, resize_shape[0], resize_shape[1])
-    image = image.transpose((2, 0, 1))
-    image = image.expand_dims(axis=0)
-    image = image.astype(dtype='float32')
-    return image
-
-
-def load_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: mx.ndarray.ndarray.NDArray) -> \
-                                                                                      mx.module.module.Module:
-    """
-    Load MXNet model
-    """
-    sym, arg_params, aux_params = mx.model.load_checkpoint(model_prefix, epoch)
-    model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
-    arg_params["data"] = image
-    model.bind(for_training=False, data_shapes=[("data", arg_params["data"].shape)])
-    model.set_params(arg_params, aux_params, allow_missing=True)
-    return model
-
-
-def get_model_output(model: mx.module.module.Module, image: mx.ndarray.ndarray.NDArray) -> np.ndarray:
+def get_model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
     """
     Predict embedding
     """
     Batch = namedtuple("Batch", ["data"])
-    model.forward(Batch([image]))
+    model.forward(Batch([mx.nd.array(image)]))
     return np.squeeze(model.get_outputs()[0].asnumpy())
 
 
