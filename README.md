@@ -27,4 +27,5 @@ pillow 8.4
 2. Run **_onnx_inference_mxnet_back.py_**
 
 #### ONNX Runtime
-1.
+1. Specify **_config.py_** with _onnx_model_name_, _image_name_, _input_size_, _onnx_mxnet_output_file_
+2. Run **_onnxruntime_inference.py_**
