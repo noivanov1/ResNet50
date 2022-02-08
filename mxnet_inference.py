@@ -5,7 +5,7 @@ import config
 from collections import namedtuple
 
 
-def image_preprocessing(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
+def preprocess_image(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
     """
     Preprocessing the image for model
     """
@@ -17,8 +17,8 @@ def image_preprocessing(image_name: str, resize_shape: tuple) -> mx.ndarray.ndar
     return image
 
 
-def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: mx.ndarray.ndarray.NDArray) -> \
-                                                                                        mx.module.module.Module:
+def load_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: mx.ndarray.ndarray.NDArray) -> \
+                                                                                      mx.module.module.Module:
     """
     Load MXNet model
     """
@@ -30,7 +30,7 @@ def get_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: mx.
     return model
 
 
-def model_output(model: mx.module.module.Module, image: mx.ndarray.ndarray.NDArray) -> np.ndarray:
+def get_model_output(model: mx.module.module.Module, image: mx.ndarray.ndarray.NDArray) -> np.ndarray:
     """
     Predict embedding
     """
@@ -50,9 +50,9 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 def main():
     ctx = mx.cpu()
-    image = image_preprocessing(config.image_name, config.input_size)
-    model = get_model(ctx, config.mxnet_model_prefix, config.epoch, image)
-    model_out = model_output(model, image)
+    image = preprocess_image(config.image_name, config.input_size)
+    model = load_model(ctx, config.mxnet_model_prefix, config.epoch, image)
+    model_out = get_model_output(model, image)
     write_output(config.mxnet_output_file, model_out)
     print(f'Done! Check {config.mxnet_output_file}')
 

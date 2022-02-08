@@ -6,7 +6,7 @@ from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from collections import namedtuple
 
 
-def image_preprocessing(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
+def preprocess_image(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
     """
     Preprocessing the image for model
     """
@@ -18,7 +18,7 @@ def image_preprocessing(image_name: str, resize_shape: tuple) -> mx.ndarray.ndar
     return loaded_image
 
 
-def get_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
+def load_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
     """
     Load ONNX model via MXNet
     """
@@ -31,7 +31,7 @@ def get_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) 
     return loaded_model
 
 
-def model_output(loaded_model: mx.module.module.Module, input_picture: mx.ndarray.ndarray.NDArray) -> np.ndarray:
+def get_model_output(loaded_model: mx.module.module.Module, input_picture: mx.ndarray.ndarray.NDArray) -> np.ndarray:
     """
     Predict embedding
     """
@@ -52,9 +52,9 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 def main():
     ctx = mx.cpu()
-    input_image = image_preprocessing(config.image_name, config.input_size)
-    loaded_model = get_model(ctx, config.onnx_model_name, config.input_size)
-    model_out = model_output(loaded_model, input_image)
+    input_image = preprocess_image(config.image_name, config.input_size)
+    loaded_model = load_model(ctx, config.onnx_model_name, config.input_size)
+    model_out = get_model_output(loaded_model, input_image)
     write_output(config.onnx_mxnet_output_file, model_out)
     print(f'Done! Check {config.onnx_mxnet_output_file}')
 

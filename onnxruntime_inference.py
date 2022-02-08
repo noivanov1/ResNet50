@@ -6,7 +6,7 @@ import config
 from PIL import Image
 
 
-def image_preprocessing(image_name: str) -> np.ndarray:
+def preprocess_image(image_name: str) -> np.ndarray:
     """
     Preprocessing the image for model
     """
@@ -18,14 +18,14 @@ def image_preprocessing(image_name: str) -> np.ndarray:
     return img
 
 
-def get_model(onnx_model_name: str):
+def load_model(onnx_model_name: str):
     """
     Load ONNX model
     """
     return onnx.load(onnx_model_name)
 
 
-def model_output(loaded_model, input_image):
+def get_model_output(loaded_model, input_image):
     """
     Return embedding via ONNX Runtime
     """
@@ -45,9 +45,9 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 
 def main():
-    loaded_onnx_model = get_model(config.onnx_model_name)
-    input_image = image_preprocessing(config.image_name)
-    model_out = model_output(loaded_onnx_model, input_image)
+    loaded_onnx_model = load_model(config.onnx_model_name)
+    input_image = preprocess_image(config.image_name)
+    model_out = get_model_output(loaded_onnx_model, input_image)
     write_output(config.onnxruntime_output_file, model_out)
     print(f'Done! Check {config.onnxruntime_output_file}')
 
