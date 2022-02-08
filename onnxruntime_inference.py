@@ -18,11 +18,17 @@ def image_preprocessing(image_name: str) -> np.ndarray:
     return img
 
 
-def get_model (onnx_model_name: str):
+def get_model(onnx_model_name: str):
+    """
+    Load ONNX model
+    """
     return onnx.load(onnx_model_name)
 
 
 def model_output(loaded_model, input_image):
+    """
+    Return embedding via ONNX Runtime
+    """
     content = loaded_model.SerializeToString()
     sess = onnxruntime.InferenceSession(content)
     feed1 = {sess.get_inputs()[0].name: input_image}
