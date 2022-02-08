@@ -18,7 +18,7 @@ def conversion_mxnet2onnx(mxnet_prefix: str, onnx_model: str, input_shape: Tuple
     return onnx_mxnet.export_model(sym, params, [input_shape], np.float32, onnx_model, verbose=True)
 
 
-def create_log(dist_model: str) -> str:
+def create_log() -> str:
     """
     Log file containing MXNet and ONNX packages versions.
     """
@@ -40,7 +40,7 @@ def main():
     """
     converted_model = conversion_mxnet2onnx(config.mxnet_model_prefix, config.onnx_model_name, config.conversion_input_size)  # noqa
     print(f"Converted model is {converted_model}")
-    log_txt = create_log(converted_model)
+    log_txt = create_log()
     write_logfile(config.mxnet2onnx_log, log_txt)
 
 
