@@ -3,7 +3,7 @@ import mxnet as mx
 import config
 
 from collections import namedtuple
-from tools import load_model, preprocess_image
+from tools import load_mxnet_model, preprocess_image
 
 
 def get_model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
@@ -27,7 +27,7 @@ def write_output(file_name: str, model_out: np.ndarray):
 def main():
     ctx = mx.cpu()
     image = preprocess_image(config.image_name, config.input_size)
-    model = load_model(ctx, config.mxnet_model_prefix, config.epoch, image)
+    model = load_mxnet_model(ctx, config.mxnet_model_prefix, config.epoch, image)
     model_out = get_model_output(model, image)
     write_output(config.mxnet_output_file, model_out)
     print(f'Done! Check {config.mxnet_output_file}')

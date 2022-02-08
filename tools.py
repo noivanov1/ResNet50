@@ -16,7 +16,7 @@ def preprocess_image(image_name: str, resize_shape: tuple) -> np.ndarray:
     return image
 
 
-def load_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> \
+def load_mxnet_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> \
                                                                                       mx.module.module.Module:
     """
     Load MXNet model
