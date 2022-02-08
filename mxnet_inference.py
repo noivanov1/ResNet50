@@ -50,8 +50,8 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 def main():
     ctx = mx.cpu()
-    image = image_preprocessing(config.image_name, config.image_resize_to)
-    model = get_model(ctx, config.mxnet_model_prefix, 0, image)
+    image = image_preprocessing(config.image_name, config.resize_shape)
+    model = get_model(ctx, config.mxnet_model_prefix, config.epoch, image)
     model_out = model_output(model, image)
     write_output(config.mxnet_output_file, model_out)
     print('Done.')
