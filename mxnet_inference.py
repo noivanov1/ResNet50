@@ -5,12 +5,12 @@ import config
 from collections import namedtuple
 
 
-def image_preprocessing(image_name: str) -> mx.ndarray.ndarray.NDArray:
+def image_preprocessing(image_name: str, resize_shape: list) -> mx.ndarray.ndarray.NDArray:
     """
     Preprocessing the image for model
     """
     image = mx.image.imread(image_name)
-    image = mx.image.imresize(image, config.image_resize_to[0], config.image_resize_to[1])
+    image = mx.image.imresize(image, resize_shape[0], resize_shape[1])
     image = image.transpose((2, 0, 1))
     image = image.expand_dims(axis=0)
     image = image.astype(dtype='float32')
@@ -50,7 +50,7 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 def main():
     ctx = mx.cpu()
-    image = image_preprocessing(config.image_name)
+    image = image_preprocessing(config.image_name, config.image_resize_to)
     model = get_model(ctx, config.mxnet_model_prefix, 0, image)
     model_out = model_output(model, image)
     write_output(config.mxnet_output_file, model_out)
