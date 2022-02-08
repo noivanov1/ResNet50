@@ -54,7 +54,7 @@ def main():
     model = get_model(ctx, config.mxnet_model_prefix, config.epoch, image)
     model_out = model_output(model, image)
     write_output(config.mxnet_output_file, model_out)
-    print('Done.')
+    print(f'Done! Check {config.mxnet_output_file}')
 
 
 if __name__ == "__main__":

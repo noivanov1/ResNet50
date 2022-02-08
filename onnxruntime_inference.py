@@ -49,7 +49,7 @@ def main():
     input_image = image_preprocessing(config.image_name)
     model_out = model_output(loaded_onnx_model, input_image)
     write_output(config.onnxruntime_output_file, model_out)
-    print('Done.')
+    print(f'Done! Check {config.onnxruntime_output_file}')
 
 
 if __name__ == "__main__":
