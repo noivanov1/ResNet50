@@ -6,12 +6,12 @@ from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from collections import namedtuple
 
 
-def image_preprocessing(image_name: str) -> mx.ndarray.ndarray.NDArray:
+def image_preprocessing(image_name: str, resize_shape: tuple) -> mx.ndarray.ndarray.NDArray:
     """
     Preprocessing the image for model
     """
     loaded_image = mx.image.imread(image_name)
-    loaded_image = mx.image.imresize(loaded_image, config.image_resize_to[0], config.image_resize_to[1])
+    loaded_image = mx.image.imresize(loaded_image, resize_shape[0], resize_shape[1])
     loaded_image = loaded_image.transpose((2, 0, 1))
     loaded_image = loaded_image.expand_dims(axis=0)
     loaded_image = loaded_image.astype(dtype='float32')
@@ -52,7 +52,7 @@ def write_output(file_name: str, model_out: np.ndarray):
 
 def main():
     ctx = mx.cpu()
-    input_image = image_preprocessing(config.image_name)
+    input_image = image_preprocessing(config.image_name, config.input_size)
     loaded_model = get_model(ctx, config.onnx_model_name, config.input_size)
     model_out = model_output(loaded_model, input_image)
     write_output(config.onnx_mxnet_output_file, model_out)
