@@ -34,7 +34,9 @@ pillow 8.4
 ## Troubleshooting 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ \
 **Solution (bad):** Downgrade onnx to 1.3.0 version \
-**Solution (good):** Change code in MXNet package https://github.com/apache/incubator-mxnet/pull/18846/files
+**Solution (good):** Change code in MXNet package:
+https://github.com/apache/incubator-mxnet/pull/18846/files
 ------------------------
 * _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 64 by 112_\
-**Solution (good):** Change code in MXNet package https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
+**Solution (good):** Change code in MXNet package:
+https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
