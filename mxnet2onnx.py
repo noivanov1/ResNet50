@@ -30,6 +30,9 @@ def create_log() -> str:
 
 
 def write_logfile(file_name: str, log_txt: str):
+    """
+    Write embedding to .txt file
+    """
     with open(file_name, "w") as logfile:
         logfile.write(log_txt)
 
