@@ -21,3 +21,6 @@ onnx_mxnet_output_file = 'onnx_mxnet_inference.txt'
 
 # ONNX Runtime inference
 onnxruntime_output_file = 'onnxruntime_inference.txt'
+
+# Test converted models
+test_embeddings_log = 'emb_test_log.txt'
