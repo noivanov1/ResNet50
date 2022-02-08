@@ -1,13 +1,13 @@
-import numpy as np
 import mxnet as mx
+from mxnet.module import Module
+
 import config
 
-from tools import preprocess_image
+from tools import preprocess_image, get_model_output, write_output
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
-from collections import namedtuple
 
 
-def load_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
+def load_onnx_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
     """
     Load ONNX model via MXNet
     """
@@ -20,29 +20,10 @@ def load_model(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple)
     return loaded_model
 
 
-def get_model_output(loaded_model: mx.module.module.Module, input_picture: mx.ndarray.ndarray.NDArray) -> np.ndarray:
-    """
-    Predict embedding
-    """
-    Batch = namedtuple("Batch", ["data"])
-    loaded_model.forward(Batch([mx.nd.array(input_picture)]))
-    embedding = np.squeeze(loaded_model.get_outputs()[0].asnumpy())
-    return embedding
-
-
-def write_output(file_name: str, model_out: np.ndarray):
-    """
-    Write embedding to .txt file
-    """
-    with open(file_name, 'w') as out:
-        for i in range(len(model_out)):
-            out.write(str(model_out[i]) + '\n')
-
-
 def main():
     ctx = mx.cpu()
     input_image = preprocess_image(config.image_name, config.input_size)
-    loaded_model = load_model(ctx, config.onnx_model_name, config.input_size)
+    loaded_model = load_onnx_model(ctx, config.onnx_model_name, config.input_size)
     model_out = get_model_output(loaded_model, input_image)
     write_output(config.onnx_mxnet_output_file, model_out)
     print(f'Done! Check {config.onnx_mxnet_output_file}')

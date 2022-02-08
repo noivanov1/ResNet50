@@ -1,24 +1,25 @@
 import onnxruntime
 import onnx
-import numpy as np
 import config
+import numpy as np
 
 from PIL import Image
+from tools import preprocess_image, write_output
 
 
-def preprocess_image(image_name: str) -> np.ndarray:
+def preprocess_image(image_name: str, resize_shape: tuple) -> np.ndarray:
     """
     Preprocessing the image for model
     """
     image = Image.open(image_name)
-    img = np.array(image)
-    img = np.swapaxes(img, 0, 2)
-    img = np.swapaxes(img, 1, 2)  # change to (c, h,w) order
-    img = np.expand_dims(img, axis=0).astype(np.float32)
-    return img
+    image = np.array(image)
+    image = np.swapaxes(image, 0, 2)
+    image = np.swapaxes(image, 1, 2)  # change to (c, h,w) order
+    image = np.expand_dims(image, axis=0).astype(np.float32)
+    return image
 
 
-def load_model(onnx_model_name: str):
+def load_model(onnx_model_name: str) -> onnx.onnx_ONNX_REL_1_6_ml_pb2.ModelProto:
     """
     Load ONNX model
     """
@@ -35,18 +36,10 @@ def get_model_output(loaded_model, input_image):
     return sess.run(None, feed1)[0][0]
 
 
-def write_output(file_name: str, model_out: np.ndarray):
-    """
-    Write embedding to .txt file
-    """
-    with open(file_name, 'w') as out:
-        for i in range(len(model_out)):
-            out.write(str(model_out[i]) + '\n')
-
-
 def main():
     loaded_onnx_model = load_model(config.onnx_model_name)
-    input_image = preprocess_image(config.image_name)
+    print(type(loaded_onnx_model))
+    input_image = preprocess_image(config.image_name, config.input_size)
     model_out = get_model_output(loaded_onnx_model, input_image)
     write_output(config.onnxruntime_output_file, model_out)
     print(f'Done! Check {config.onnxruntime_output_file}')

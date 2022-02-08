@@ -1,27 +1,7 @@
-import numpy as np
 import mxnet as mx
 import config
 
-from collections import namedtuple
-from tools import load_mxnet_model, preprocess_image
-
-
-def get_model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
-    """
-    Predict embedding
-    """
-    Batch = namedtuple("Batch", ["data"])
-    model.forward(Batch([mx.nd.array(image)]))
-    return np.squeeze(model.get_outputs()[0].asnumpy())
-
-
-def write_output(file_name: str, model_out: np.ndarray):
-    """
-    Write embedding to .txt file
-    """
-    with open(file_name, 'w') as out:
-        for i in range(len(model_out)):
-            out.write(str(model_out[i]) + '\n')
+from tools import load_mxnet_model, preprocess_image, get_model_output, write_output
 
 
 def main():
