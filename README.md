@@ -24,15 +24,17 @@ patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/sit
 
 
 ### Conversion
+Set parameters for running inferences via command line or in **_config.py_** as default values.
+
 1. Run
 ```console
 python3 mxnet2onnx.py --prefix model_mxnet/model 
 --dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
 ```
-specifying _--prefix_, _--dist_model_, _--input_shape_ in command line or in **_config.py_**
+
 
 ### Inference
-Set parameters for running inferences via command line or in **_config.py_** as default values.
+
 #### MXNet
 1. Run
 ```console
