@@ -1,6 +1,7 @@
 import numpy as np
 import config
 
+from tools import write_logfile
 from prettytable import PrettyTable
 
 
@@ -53,14 +54,6 @@ def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: fl
     log_table.add_row(["ONNX (MXNet back) inference", max_abs_onnx, max_rel_onnx])
     log_table.add_row(["ONNX Runtime inference", max_abs_onnxruntime, max_rel_onnxruntime])
     return log_table.get_string()
-
-
-def write_logfile(file_name: str, log_txt: str):
-    """
-    Write embedding to .txt file
-    """
-    with open(file_name, "w") as logfile:
-        logfile.write(log_txt)
 
 
 def main():

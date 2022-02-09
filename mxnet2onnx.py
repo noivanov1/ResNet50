@@ -5,6 +5,7 @@ import numpy as np
 import config
 
 from mxnet.contrib import onnx as onnx_mxnet
+from tools import write_logfile
 from prettytable import PrettyTable
 from ast import literal_eval
 from typing import Tuple
@@ -30,18 +31,10 @@ def create_log() -> str:
     return log_table.get_string()
 
 
-def write_logfile(file_name: str, log_txt: str):
-    """
-    Write embedding to .txt file
-    """
-    with open(file_name, "w") as logfile:
-        logfile.write(log_txt)
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--prefix", default=config.mxnet_model_prefix, type=str, help="prefix of the origin MXNet model")
 parser.add_argument("--dist_model", default=config.onnx_model_name, type=str, help="name of the output ONNX model")
-parser.add_argument("--input_shape", default=config.conversion_input_size, help="input shape of the origin MXNet model")
+parser.add_argument("--input_shape", default=config.input_shape, help="input shape of the origin MXNet model")
 parser.add_argument("--log_file", default=config.mxnet2onnx_log, type=str, help="write conversion log file")
 args = parser.parse_args()
 

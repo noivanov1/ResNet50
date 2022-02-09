@@ -84,3 +84,11 @@ def write_output(file_name: str, model_out: np.ndarray):
     with open(file_name, 'w') as out:
         for i in range(len(model_out)):
             out.write(str(model_out[i]) + '\n')
+
+
+def write_logfile(file_name: str, log_txt: str):
+    """
+    Write embedding to .txt file
+    """
+    with open(file_name, "w") as logfile:
+        logfile.write(log_txt)
