@@ -32,20 +32,18 @@ python3 mxnet2onnx.py --prefix model_mxnet/model
 specifying _--prefix_, _--dist_model_, _--input_shape_ in command line or in **_config.py_**
 
 ### Inference
+Set parameters for running inferences via command line or in **_config.py_** as default values.
 #### MXNet
 1. Run
 ```console
 python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112--model_output  mxnet_inference.txt
 ```
-specifying _--prefix_, _--epoch_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
-
 
 #### ONNX (MXNet back)
 1. Run 
 ```console
 python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnx_mxnet_inference.txt
 ```
-specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
 
 
 #### ONNX Runtime
@@ -53,7 +51,7 @@ specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ 
 ```console
 python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnxruntime_inference.txt 
 ```
-specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
+
 
 ## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ \
