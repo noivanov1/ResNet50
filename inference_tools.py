@@ -1,6 +1,10 @@
 import mxnet as mx
+import onnx
+import onnxruntime
 import numpy as np
 
+#from mxnet.module import Module
+from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from PIL import Image
 from collections import namedtuple
 
@@ -18,7 +22,7 @@ def preprocess_image(image_name: str, resize_shape: tuple) -> np.ndarray:
     return image
 
 
-def load_mxnet_model(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> \
+def load_model_mxnet(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> \
                                                                                       mx.module.module.Module:
     """
     Load MXNet model
@@ -33,13 +37,43 @@ def load_mxnet_model(ctx: mx.context.Context, model_prefix: str, epoch: int, ima
     return model
 
 
-def get_model_output(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
+def load_model_onnx(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
+    """
+    Load ONNX model via MXNet
+    """
+    sym, arg_params, aux_params = import_model(onnx_model_name)
+    all_layers = sym.get_internals()
+    sym = all_layers["fc1_output"]
+    loaded_model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
+    loaded_model.bind(for_training=False, data_shapes=[('data', (1, 3, input_size[0], input_size[1]))])
+    loaded_model.set_params(arg_params, aux_params, allow_missing=True)
+    return loaded_model
+
+
+def load_model_onnxruntime(onnx_model_name: str) -> onnx.onnx_ONNX_REL_1_6_ml_pb2.ModelProto:
+    """
+    Load ONNX model
+    """
+    return onnx.load(onnx_model_name)
+
+
+def get_model_output_onnx_mxnet(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
     """
     Predict embedding
     """
     Batch = namedtuple("Batch", ["data"])
     model.forward(Batch([mx.nd.array(image)]))
     return np.squeeze(model.get_outputs()[0].asnumpy())
+
+
+def get_model_output_onnxruntime(loaded_model, input_image):
+    """
+    Return embedding via ONNX Runtime
+    """
+    content = loaded_model.SerializeToString()
+    sess = onnxruntime.InferenceSession(content)
+    feed1 = {sess.get_inputs()[0].name: input_image}
+    return sess.run(None, feed1)[0][0]
 
 
 def write_output(file_name: str, model_out: np.ndarray):
