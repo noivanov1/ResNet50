@@ -2,15 +2,17 @@
 Project for conversion **MXNet** ResNet50 to **ONNX** framework. See [Troubleshooting](#Troubleshooting).
 
 ## Requirements
+```console
 python 3.6 \
 mxnet 1.6 \
 onnx 1.6 \
 onnxruntime 1.6 \
 prettytable 2.5 \
-pillow 8.4 
+pillow 8.4
+```
 
 ## Environment 
-1. Create *_venv_* and install packages via 
+1. Create **_venv_** and install packages via 
 ```console
 pip install --upgrade pip
 pip install -r requirements.txt
