@@ -10,7 +10,11 @@ prettytable 2.5 \
 pillow 8.4 
 
 ## Environment 
-1. Create _virtual env_ and install packages via _pip install -r requirements.txt_
+1. Create _virtual env_ and install packages via 
+'''console
+pip3 install --upgrade pip
+pip install -r requirements.txt
+'''
 2. Put **MXNet model** in _model_mxnet/_
 
 ### Conversion
