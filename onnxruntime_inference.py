@@ -1,7 +1,7 @@
 import argparse
 import config
 
-from inference_tools import preprocess_image, load_model_onnxruntime, get_model_output_onnxruntime, write_output
+from tools import preprocess_image, load_model_onnxruntime, get_model_output_onnxruntime, write_output
 from ast import literal_eval
 
 

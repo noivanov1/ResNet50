@@ -2,7 +2,7 @@ import argparse
 import mxnet as mx
 import config
 
-from inference_tools import load_model_mxnet, preprocess_image, get_model_output_onnx_mxnet, write_output
+from tools import load_model_mxnet, preprocess_image, get_model_output_onnx_mxnet, write_output
 from ast import literal_eval
 
 
