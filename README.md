@@ -42,6 +42,8 @@ patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/sit
 
 ## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ \
-* _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 64 by 112_\
+* _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 64 by 112_
 
-Resolved by patching [Environment](#Environment) par. 2
+Resolved by patching [Environment](#Environment) par. 2 More in
+* https://github.com/apache/incubator-mxnet/pull/18846/files
+* https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
