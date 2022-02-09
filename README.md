@@ -41,8 +41,12 @@ specifying _--prefix_, _--epoch_, _--input_image_, _-input_shape_ and _--model_o
 
 
 #### ONNX (MXNet back)
-1. Specify **_config.py_** with _onnx_model_name_, _image_name_, _input_size_, _onnx_mxnet_output_file_
-2. Run **_onnx_inference_mxnet_back.py_**
+1Run 
+```console
+python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnx_mxnet_inference.txt
+```
+specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
+
 
 #### ONNX Runtime
 1. Specify **_config.py_** with _onnx_model_name_, _image_name_, _input_size_, _onnx_mxnet_output_file_
