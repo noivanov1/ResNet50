@@ -21,6 +21,11 @@ patch patch_files/mx2onnx/_op_translations.py -i patch -o venv/lib/python3.6/sit
 patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py
 ```
 3. Put **MXNet model** in _model_mxnet/_
+4. Run
+```console
+python3 mxnet2onnx.py --prefix model_mxnet/model --dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
+```
+specifying _--prefix_ and _--dist_model_ in command line or in **_config.py_**
 
 ### Conversion
 1. Specify **_config.py_** with _mxnet_model_prefix_, _conversion_input_size_, _onnx_model_name_, _log_file_
