@@ -36,20 +36,17 @@ python3 mxnet2onnx.py --prefix model_mxnet/model
 ### Inference
 
 #### MXNet
-1. Run
 ```console
 python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112--model_output  mxnet_inference.txt
 ```
 
 #### ONNX (MXNet back)
-1. Run 
 ```console
 python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnx_mxnet_inference.txt
 ```
 
 
 #### ONNX Runtime
-1. Run
 ```console
 python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnxruntime_inference.txt 
 ```
@@ -60,6 +57,6 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 * _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 64 by 112_
 
 Resolved by patching [Environment](#Environment) par. 2. \
-More in
+More on
 * https://github.com/apache/incubator-mxnet/pull/18846/files
 * https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
