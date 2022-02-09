@@ -38,7 +38,7 @@ def load_model_mxnet(ctx: mx.context.Context, model_prefix: str, epoch: int, ima
     return model
 
 
-def load_model_onnx(ctx: mx.context.Context, onnx_model_name: str, input_size: tuple) -> mx.module.module.Module:
+def load_model_onnx(ctx: mx.context.Context, onnx_model_name: str, input_size: Tuple[int, int]) -> mx.module.module.Module:
     """
     Load ONNX model via MXNet
     """
