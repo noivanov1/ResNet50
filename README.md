@@ -11,10 +11,10 @@ pillow 8.4
 
 ## Environment 
 1. Create _virtual env_ and install packages via 
-'''console
+```console
 pip3 install --upgrade pip
 pip install -r requirements.txt
-'''
+```
 2. Put **MXNet model** in _model_mxnet/_
 
 ### Conversion
