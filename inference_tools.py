@@ -7,9 +7,10 @@ import numpy as np
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from PIL import Image
 from collections import namedtuple
+from typing import Tuple
 
 
-def preprocess_image(image_name: str, resize_shape: tuple) -> np.ndarray:
+def preprocess_image(image_name: str, resize_shape: Tuple[int, int]) -> np.ndarray:
     """
     Preprocessing the image for model
     """
