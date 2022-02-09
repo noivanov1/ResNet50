@@ -2,14 +2,12 @@
 Project for conversion **MXNet** ResNet50 to **ONNX** framework. See [Troubleshooting](#Troubleshooting).
 
 ## Requirements
-```console
 python 3.6 \
 mxnet 1.6 \
 onnx 1.6 \
 onnxruntime 1.6 \
 prettytable 2.5 \
-pillow 8.4
-```
+pillow 8.4 
 
 ## Environment 
 1. Create **_venv_** and install packages via 
@@ -17,7 +15,12 @@ pillow 8.4
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-2. Put **MXNet model** in _model_mxnet/_
+2. Patch mxnet package (to resolve conversion problems) via
+```console
+patch patch_files/mx2onnx/_op_translations.py -i patch -o venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py
+patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py
+```
+3. Put **MXNet model** in _model_mxnet/_
 
 ### Conversion
 1. Specify **_config.py_** with _mxnet_model_prefix_, _conversion_input_size_, _onnx_model_name_, _log_file_
@@ -37,12 +40,8 @@ pip install -r requirements.txt
 2. Run **_onnxruntime_inference.py_**
 
 
-## Troubleshooting 
+## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ \
-**Solution (bad):** Downgrade onnx to 1.3.0 version \
-**Solution (good):** Change code in MXNet package:
-https://github.com/apache/incubator-mxnet/pull/18846/files
-------------------------
 * _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis by a dimension other than 1. 64 by 112_\
-**Solution (good):** Change code in MXNet package:
-https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
+
+Resolved by patching [Environment](#Environment) par. 2
