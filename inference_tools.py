@@ -3,7 +3,7 @@ import onnx
 import onnxruntime
 import numpy as np
 
-#from mxnet.module import Module
+
 from mxnet.contrib.onnx.onnx2mx.import_model import import_model
 from PIL import Image
 from collections import namedtuple
