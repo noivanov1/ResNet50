@@ -7,7 +7,7 @@ onnx_model_name = 'model_onnx/converted_model.onnx'
 
 # Conversion MXNet to ONNX
 mxnet2onnx_log = 'mxnet2onnx_log.txt'
-conversion_input_size = [1, 3, 112, 112]
+conversion_input_size = 1,3,112,112
 
 
 # MXNet inference
