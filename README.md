@@ -26,32 +26,36 @@ patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/sit
 ### Conversion
 1. Run
 ```console
-python3 mxnet2onnx.py --prefix model_mxnet/model --dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
+python3 mxnet2onnx.py --prefix model_mxnet/model 
+--dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
 ```
 specifying _--prefix_, _--dist_model_, _--input_shape_ in command line or in **_config.py_**
 
 ### Inference
 #### MXNet
-1. Specify **_config.py_** with _mxnet_model_prefix_, _image_name_, _input_shape_, _epoch_, _mxnet_output_file_
-2. Run
+1. Run
 ```console
-python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112 --model_output  mxnet_inference.txt
+python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112--model_output  mxnet_inference.txt
 ```
 specifying _--prefix_, _--epoch_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
 
 
 #### ONNX (MXNet back)
-1Run 
+1. Run 
 ```console
-python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --model_output  onnx_mxnet_inference.txt
+python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp
+ --input_shape 112,112 --model_output  onnx_mxnet_inference.txt
 ```
 specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
 
 
 #### ONNX Runtime
-1. Specify **_config.py_** with _onnx_model_name_, _image_name_, _input_size_, _onnx_mxnet_output_file_
-2. Run **_onnxruntime_inference.py_**
-
+1. Run
+```console
+python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp
+ --input_shape 112,112 --model_output  onnxruntime_inference.txt 
+```
+specifying _--onnx_model_, _--input_image_, _-input_shape_ and _--model_output_ in command line or in **_config.py_**
 
 ## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ \
