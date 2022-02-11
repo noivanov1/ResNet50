@@ -36,7 +36,7 @@ python3 mxnet2onnx.py --prefix model_mxnet/model
 
 #### MXNet
 ```console
-python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112--model_output  mxnet_inference.txt
+python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112 --model_output  mxnet_inference.txt
 ```
 
 #### ONNX (MXNet back)
