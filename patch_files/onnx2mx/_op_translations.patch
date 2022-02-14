@@ -1,0 +1,12 @@
+--- venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py	2022-02-14 16:49:19.812125005 +0300
++++ patch_files/onnx2mx/_op_translations.py	2022-02-14 16:48:16.812498921 +0300
+@@ -291,7 +291,8 @@
+ def _prelu(attrs, inputs, proto_obj):
+     """PRelu function"""
+     new_attrs = translation_utils._add_extra_attributes(attrs, {'act_type': 'prelu'})
+-    return 'LeakyReLU', new_attrs, inputs
++    new_gamma = symbol.squeeze(inputs[1])
++    return 'LeakyReLU', new_attrs, [inputs[0], new_gamma]
+ 
+ def _selu(attrs, inputs, proto_obj):
+     """Selu function"""
