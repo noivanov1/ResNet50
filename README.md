@@ -1,11 +1,11 @@
 Project for conversion **MXNet** ResNet to **ONNX** framework.
 
-| Models        | Conversion <br/>support |
-|---------------|-------------------------|
-| ResNet-18     | - [ ]                   |
-| ResNet-34     | - [ ]                   |
-| ResNet 50     | - [x]                   |
-| ResNet-100-ii | - [x]                   |
+| Models        | Conversion <br/>support                    |
+|---------------|--------------------------------------------|
+| ResNet-18     | <input type="checkbox" disabled />         |
+| ResNet-34     | <input type="checkbox" disabled />         |
+| ResNet 50     | <input type="checkbox" disabled checked /> |
+| ResNet-100-ii | <input type="checkbox" disabled checked /> |
 
 
 
