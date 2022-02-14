@@ -1,5 +1,5 @@
-# ResNet50
-Project for conversion **MXNet** ResNet50 to **ONNX** framework.
+# ResNet50/ ResNet100-ii
+Project for conversion **MXNet** ResNet50/100-ii to **ONNX** framework.
 
 ## Requirements
 python 3.6 \
