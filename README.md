@@ -50,7 +50,7 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 ```
 
 
-## Embeddings comparison
+### Embeddings comparison
 ```console
 python3 test_converted_outputs.py
 ```
