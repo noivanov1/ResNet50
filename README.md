@@ -2,7 +2,6 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 
 | Models        | Conversion <br/>support |
 |---------------|-------------------------|
-| ResNet 50     | &check;                 |
 | ResNet-100-ii | &check;                 |
 
 
