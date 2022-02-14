@@ -17,8 +17,8 @@ pip install -r requirements.txt
 ```
 2. Patch mxnet package (to resolve conversion problems) via
 ```console
-patch patch_files/mx2onnx/_op_translations.py -i patch -o venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py
-patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py
+patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
+patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
 ```
 3. Put **MXNet model** in _model_mxnet/_
 
@@ -27,8 +27,7 @@ patch patch_files/onnx2mx/_op_translations.py -i patch -o venv/lib/python3.6/sit
 Set parameters for running inferences via command line or in **_config.py_** as default values.
 
 ```console
-python3 mxnet2onnx.py --prefix model_mxnet/model 
---dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
+python3 mxnet2onnx.py --prefix model_mxnet/model --dist_model model_onnx/converted_model.onnx --input_shape 1,3,112,112
 ```
 
 
@@ -48,6 +47,12 @@ python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onn
 #### ONNX Runtime
 ```console
 python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --onnxruntime_model_output  onnxruntime_inference.txt 
+```
+
+
+## Embeddings comparison
+```console
+python3 test_converted_outputs.py
 ```
 
 
