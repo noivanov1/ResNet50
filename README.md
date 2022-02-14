@@ -18,7 +18,7 @@ pip install -r requirements.txt
 2. Patch mxnet package (to resolve conversion problems) via
 ```console
 patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
-patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
+patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/onnx2mx/_op_translations.patch
 ```
 3. Put **MXNet model** in _model_mxnet/_
 
