@@ -1,12 +1,10 @@
 Project for conversion **MXNet** ResNet to **ONNX** framework.
 
-| Models        | Conversion <br/>support |
-|---------------|-------------------------|
-| ResNet-18     | &check;                 |
-| ResNet-100-ii | &check;                 |
-
-
-
+| Models     | Conversion <br/>support |
+|------------|-------------------------|
+| ResNet-18  | &check;                 |
+| ResNet-34  | &check;                 |
+| ResNet-100 | &check;                 |
 
 
 
@@ -29,7 +27,13 @@ pip install -r requirements.txt
 patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
 patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/onnx2mx/_op_translations.patch
 ```
-3. Put **MXNet model** in _model_mxnet/_
+3. Download model via
+```console
+wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-0000.params
+wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-symbol.json
+```
+where *** is 18, 34, 50 or 100.
+4. Put **MXNet model** in _model_mxnet/_
 
 
 ### Conversion
@@ -70,12 +74,15 @@ python3 test_converted_outputs.py
 | ONNX Runtime                                   | 3.3999999e-07      | 8.084645e-06       |
 
 #### ResNet-34
-
+| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|------------------------------------------------|--------------------|--------------------|
+| ONNX (MXNet back)                              | 7.1000000e-07      | 7.511862e-06       |
+| ONNX Runtime                                   | 2.2100000e-06      | 1.190852e-05       |
 
 #### ResNet-50
 
 
-#### ResNet-100-ii
+#### ResNet-100
 
 
 ## Conversion problems 
