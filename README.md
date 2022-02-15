@@ -2,7 +2,11 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 
 | Models        | Conversion <br/>support |
 |---------------|-------------------------|
+| ResNet-18     | &check;                 |
 | ResNet-100-ii | &check;                 |
+
+
+
 
 
 
@@ -59,6 +63,19 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 ```console
 python3 test_converted_outputs.py
 ```
+#### ResNet-18
+| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|------------------------------------------------|--------------------|--------------------|
+| ONNX (MXNet back)                              | 3.1600000e-07      | 5.163130e-06       |
+| ONNX Runtime                                   | 3.3999999e-07      | 8.084645e-06       |
+
+#### ResNet-34
+
+
+#### ResNet-50
+
+
+#### ResNet-100-ii
 
 
 ## Conversion problems 
