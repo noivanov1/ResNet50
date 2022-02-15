@@ -6,20 +6,20 @@ onnx_model_name = 'model_onnx/converted_model.onnx'
 
 
 # Conversion MXNet to ONNX
-mxnet2onnx_log = 'mxnet2onnx_log.txt'
+mxnet2onnx_log = 'result/mxnet2onnx_log.txt'
 
 
 # MXNet inference
 epoch = 0
-mxnet_output_file = 'mxnet_inference.txt'
+mxnet_output_file = 'result/mxnet_inference.txt'
 
 
 # ONNX (MXNet back) inference
-onnx_mxnet_output_file = 'onnx_mxnet_inference.txt'
+onnx_mxnet_output_file = 'result/onnx_mxnet_inference.txt'
 
 
 # ONNX Runtime inference
-onnxruntime_output_file = 'onnxruntime_inference.txt'
+onnxruntime_output_file = 'result/onnxruntime_inference.txt'
 
 # Test converted models
-test_embeddings_log = 'emb_test_log.txt'
+test_embeddings_log = 'result/emb_test_log.txt'
