@@ -19,7 +19,7 @@ prettytable 2.5 \
 pillow 8.4 
 
 ## Environment 
-1. Create **_venv_** and install packages via 
+1. Create **_venv_** and install packages 
 ```console
 pip install --upgrade pip
 pip install -r requirements.txt
@@ -29,7 +29,7 @@ pip install -r requirements.txt
 patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
 patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/onnx2mx/_op_translations.patch
 ```
-3. Download ResNet-_***_ model via
+3. Download ResNet-_***_ model
 ```console
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-0000.params
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-symbol.json
