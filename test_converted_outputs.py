@@ -47,12 +47,12 @@ def relative_error(vector_1: np.ndarray, vector_2: np.ndarray) -> float:
 def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: float, \
                max_rel_onnxruntime: float) -> str:
     """
-    Log file containing MXNet and ONNX packages versions.
+    Log file containing table of ONNX (MXNet back) and ONNX Runtime embeddings errors.
     """
     headers = ["MAX Errors to original MXNet model ", "Max Absolute error", "Max Relative error"]
     log_table = PrettyTable(headers)
-    log_table.add_row(["ONNX (MXNet back) inference", max_abs_onnx, max_rel_onnx])
-    log_table.add_row(["ONNX Runtime inference", max_abs_onnxruntime, max_rel_onnxruntime])
+    log_table.add_row(["ONNX (MXNet back) inference", f"{max_abs_onnx:.9f}", f"{max_rel_onnx:.9f}"])
+    log_table.add_row(["ONNX Runtime inference", f"{max_abs_onnxruntime:.9f}", f"{max_rel_onnxruntime:.9f}"])
     return log_table.get_string()
 
 

@@ -79,7 +79,7 @@ def write_output(file_name: str, model_out: np.ndarray):
     """
     with open(file_name, 'w') as out:
         for i in range(len(model_out)):
-            out.write(str(model_out[i]) + '\n')
+            out.write(str(f"{model_out[i]:.9f}") + '\n')
 
 
 def write_logfile(file_name: str, log_txt: str):
