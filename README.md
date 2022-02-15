@@ -4,8 +4,8 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 |------------|-------------------------|
 | ResNet-18  | &check;                 |
 | ResNet-34  | &check;                 |
-| ResNet-50   | &check;                 |
-| ResNet-100 | &check;                 |
+| ResNet-50  | &check;                 |
+| ResNet-101 | &check;                 |
 
 
 
@@ -33,7 +33,7 @@ patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_transla
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-0000.params
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-symbol.json
 ```
-where *** is 18, 34, 50 or 100.
+where *** is 18, 34, 50 or 101.
 4. Put **MXNet model** in _model_mxnet/_
 
 
@@ -81,14 +81,16 @@ python3 test_converted_outputs.py
 | ONNX Runtime                                   | 2.2100000e-06      | 1.190852e-05       |
 
 #### ResNet-50
-
 | MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
 |------------------------------------------------|--------------------|--------------------|
 | ONNX (MXNet back)                              | 2.456036e-06       | 0.092718           |
 | ONNX Runtime                                   | 2.457186e-06       | 0.092712           |
 
-#### ResNet-100
-
+#### ResNet-101
+| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|------------------------------------------------|--------------------|--------------------|
+| ONNX (MXNet back)                              | 3.0100000e-07      | 6.652124e-06       |
+| ONNX Runtime                                   | 1.3100000e-06      | 1.874722e-05       |
 
 ## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ 
