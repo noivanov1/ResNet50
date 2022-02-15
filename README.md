@@ -34,7 +34,7 @@ patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_transla
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-0000.params
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-symbol.json
 ```
-where *** is 18, 34, 50 or 101.
+where *** is 18, 34, 50 or 101.<br/>
 4. Put **MXNet model** in _model_mxnet/_
 
 
