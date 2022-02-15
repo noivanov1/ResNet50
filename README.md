@@ -4,6 +4,7 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 |------------|-------------------------|
 | ResNet-18  | &check;                 |
 | ResNet-34  | &check;                 |
+| ResNet-50   | &check;                 |
 | ResNet-100 | &check;                 |
 
 
@@ -81,6 +82,10 @@ python3 test_converted_outputs.py
 
 #### ResNet-50
 
+| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|------------------------------------------------|--------------------|--------------------|
+| ONNX (MXNet back)                              | 2.456036e-06       | 0.092718           |
+| ONNX Runtime                                   | 2.457186e-06       | 0.092712           |
 
 #### ResNet-100
 
