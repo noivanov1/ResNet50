@@ -6,6 +6,7 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 | ResNet-34  | &check;                 |
 | ResNet-50  | &check;                 |
 | ResNet-101 | &check;                 |
+| ResNet-152 | &check;                 |
 
 
 
@@ -91,6 +92,12 @@ python3 test_converted_outputs.py
 |------------------------------------------------|--------------------|--------------------|
 | ONNX (MXNet back)                              | 3.0100000e-07      | 6.652124e-06       |
 | ONNX Runtime                                   | 1.3100000e-06      | 1.874722e-05       |
+
+#### ResNet-152
+| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|------------------------------------------------|--------------------|--------------------|
+| ONNX (MXNet back)                              | 6.0000000e-07      | 6.837760e-06       |
+| ONNX Runtime                                   | 7.9999999e-07      | 1.589219e-05       |
 
 ## Conversion problems 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._ 
