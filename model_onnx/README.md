@@ -1,1 +1,1 @@
-Result ONNX ResNet50 model
+Converted ONNX ResNet model
