@@ -29,8 +29,6 @@ def load_model_mxnet(ctx: mx.context.Context, model_prefix: str, epoch: int, ima
     Load MXNet model
     """
     sym, arg_params, aux_params = mx.model.load_checkpoint(model_prefix, epoch)
-    all_layers = sym.get_internals()
-    sym = all_layers["fc1_output"]
     model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
     arg_params["data"] = mx.nd.array(image)
     model.bind(for_training=False, data_shapes=[("data", arg_params["data"].shape)])
@@ -43,8 +41,6 @@ def load_model_onnx(ctx: mx.context.Context, onnx_model_name: str, input_size: T
     Load ONNX model via MXNet
     """
     sym, arg_params, aux_params = import_model(onnx_model_name)
-    all_layers = sym.get_internals()
-    sym = all_layers["fc1_output"]
     loaded_model = mx.mod.Module(symbol=sym, context=ctx, label_names=[])
     loaded_model.bind(for_training=False, data_shapes=[('data', (1, 3, input_size[0], input_size[1]))])
     loaded_model.set_params(arg_params, aux_params, allow_missing=True)
