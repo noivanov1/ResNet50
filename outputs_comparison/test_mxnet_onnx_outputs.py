@@ -1,3 +1,8 @@
+import sys
+import os
+import inspect
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))))
+
 import numpy as np
 import config
 import args_parser
@@ -41,8 +46,7 @@ def relative_error(vector_1: np.ndarray, vector_2: np.ndarray) -> float:
     return np.max(errors_list)
 
 
-def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: float, \
-               max_rel_onnxruntime: float) -> str:
+def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: float, max_rel_onnxruntime: float) -> str:
     """
     Log file containing table of ONNX (MXNet back) and ONNX Runtime embeddings errors.
     """
@@ -67,9 +71,9 @@ def main():
     max_rel_onnxruntime = relative_error(mxnet_embedding, onnxruntime_embedding)
 
     test_log_table = create_log(max_abs_onnx, max_abs_onnxruntime, max_rel_onnx, max_rel_onnxruntime)
-    write_logfile(args_parser.args.test_log, test_log_table)
+    write_logfile(args_parser.args.test_mx_onnx, test_log_table)
 
-    print(f'Done! Check {args_parser.args.test_log}')
+    print(f'Done! Check {args_parser.args.test_mx_onnx}')
 
 
 if __name__ == "__main__":

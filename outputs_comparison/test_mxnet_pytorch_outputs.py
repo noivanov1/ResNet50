@@ -1,5 +1,11 @@
+import sys
+import os
+import inspect
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))))
+
 import numpy as np
 import config
+import args_parser
 
 from tools import write_logfile
 from prettytable import PrettyTable
@@ -7,13 +13,9 @@ from prettytable import PrettyTable
 
 def read_embedding_file(embedding_file: str) -> np.ndarray:
     """
-    Read embeddings from file.
+    Read embeddings from .npy file.
     """
-    embedding = []
-    with open(embedding_file) as file:
-        for element in file:
-            embedding.append(float(element))
-    return np.asarray(embedding)
+    return np.load(embedding_file)
 
 
 def dim_test(vector_1: np.ndarray, vector_2: np.ndarray):
@@ -47,7 +49,7 @@ def relative_error(vector_1: np.ndarray, vector_2: np.ndarray) -> float:
 def create_log(max_abs_pytorch: float, max_rel_pytorch: float) -> str:
     headers = ["MAX Errors to original MXNet model ", "Max Absolute error", "Max Relative error"]
     log_table = PrettyTable(headers)
-    log_table.add_row(["PyTorch inference", f"{max_abs_pytorch:.9f}", f"{max_rel_pytorch:.9f}"])
+    log_table.add_row(["PyTorch inference", max_abs_pytorch, max_rel_pytorch])
     return log_table.get_string()
 
 
@@ -60,9 +62,9 @@ def main():
     max_rel_pytorch = relative_error(mxnet_embedding, pytorch_embedding)
 
     test_log = create_log(max_abs_pytorch, max_rel_pytorch)
-    write_logfile(config.test_mxnet_onnx_log, test_log)
+    write_logfile(args_parser.args.test_mx_pytorch, test_log)
 
-    print(f'Done! Check {config.test_mxnet_onnx_log}')
+    print(f'Done! Check {args_parser.args.test_mx_pytorch}')
 
 
 if __name__ == "__main__":
