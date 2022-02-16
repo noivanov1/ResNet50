@@ -80,7 +80,6 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 python3 outputs_comparison/test_mxnet_onnx_outputs.py --test_mx_onnx outputs_comparison/mxnet_onnx_test.txt
 ```
 
-#### ResNet-18
 
 | MAX Errors to original <br/>MXNet model output | ResNet-18 ONNX (MXNet back) | ResNet-18 ONNX Runtime | ResNet-34  ONNX (MXNet back) | ResNet-34 ONNX Runtime | ResNet-50 ONNX (MXNet back) | ResNet-50 ONNX Runtime | ResNet-101 ONNX (MXNet back) | ResNet-101 ONNX Runtime | ResNet-152 ONNX (MXNet back) | ResNet-152 ONNX Runtime |
 |------------------------------------------------|-----------------------------|------------------------|------------------------------|------------------------|-----------------------------|------------------------|------------------------------|-------------------------|------------------------------|-------------------------|
