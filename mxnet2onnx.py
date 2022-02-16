@@ -3,6 +3,7 @@ import mxnet as mx
 import onnx
 import numpy as np
 import config
+import args_parser
 
 from mxnet.contrib import onnx as onnx_mxnet
 from tools import write_logfile
@@ -31,22 +32,15 @@ def create_log() -> str:
     return log_table.get_string()
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--prefix", default=config.mxnet_model_prefix, type=str, help="prefix of the origin MXNet model")
-parser.add_argument("--dist_model", default=config.onnx_model_name, type=str, help="name of the output ONNX model")
-parser.add_argument("--input_shape", default=config.input_shape, help="input shape of the origin MXNet model")
-parser.add_argument("--log_file", default=config.mxnet2onnx_log, type=str, help="write conversion log file")
-args = parser.parse_args()
-
-
 def main():
     """
     Model conversion.
     """
-    converted_model = conversion_mxnet2onnx(args.prefix, args.dist_model, literal_eval(str(args.input_shape)))
+    converted_model = conversion_mxnet2onnx(args_parser.args.prefix, args_parser.args.dist_model,
+                                            literal_eval(str(args_parser.args.input_shape)))
     log_txt = create_log()
-    write_logfile(args.log_file, log_txt)
-    print(f"Done! Check {converted_model} and {args.log_file}")
+    write_logfile(args_parser.args.log_conversion, log_txt)
+    print(f"Done! Check {converted_model} and {args_parser.args.log_conversion}")
 
 
 if __name__ == "__main__":
