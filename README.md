@@ -1,17 +1,11 @@
 Project for conversion **MXNet** ResNet to **ONNX** and **PyTorch** frameworks.
 
-![Alt text](https://g.gravizo.com/source/<custom_mark>?<url_source_url_encoded>)
-<details> 
-<summary></summary>
-custom_mark10
-  digraph G {
-    size ="4,4";
-    MXNet [shape=circle];
-    MXNet -> ONNX;
-    MXNet -> PyTorch;
-  }
-custom_mark10
-</details>
+```mermaid
+graph TD
+    MXNet-->ONNX
+    MXNet-->PyTorch
+```
+
 
 
 | Models     | ONNX    | PyTorch |
