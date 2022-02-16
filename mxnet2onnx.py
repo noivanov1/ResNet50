@@ -38,7 +38,7 @@ def main():
                                             literal_eval(str(args_parser.args.input_shape)))
     log_txt = create_log()
     write_logfile(args_parser.args.conversion_log, log_txt)
-    print(f"Done! Check {converted_model} and {args_parser.args.log_conversion}")
+    print(f"Done! Check {converted_model} and {args_parser.args.conversion_log}")
 
 
 if __name__ == "__main__":
