@@ -3,11 +3,11 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 
 | Models     | ONNX    | PyTorch |
 |------------|---------|---------|
-| ResNet-18  | &check; |         |
-| ResNet-34  | &check; |         |
-| ResNet-50  | &check; |         |
-| ResNet-101 | &check; |         |
-| ResNet-152 | &check; |         |
+| ResNet-18  | &check; | &check; |
+| ResNet-34  | &check; | &check; |
+| ResNet-50  | &check; | &check; |
+| ResNet-101 | &check; | &check; |
+| ResNet-152 | &check; | &check; |
 
 # Requirements
 
@@ -115,7 +115,7 @@ python3 outputs_comparison/test_mxnet_onnx_outputs.py --test_mx_onnx outputs_com
 | ONNX (MXNet back)                              | 5.9604645e-07      | 6.8306026e-06      |
 | ONNX Runtime                                   | 8.34465e-07        | 1.591998e-05       |
 
-## Conversion problems
+### Conversion problems
 
 * _**ValidationError:** Unrecognized attribute: spatial for operator BatchNormalization._
 * _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis
@@ -138,8 +138,8 @@ cp pytorch_IR/kit_model/kit_model.py model_pytorch/kit_model.py
 ```
 
 ##### Warnings
-**Warning**: MXNet Parser has not supported operator null with name data.
-**Warning**: convert the null operator with name [data] into input layer.
+**Warning**: MXNet Parser has not supported operator null with name data. \
+**Warning**: convert the null operator with name [data] into input layer. \
 **Warning**: SoftmaxOutput attrs are not supported in IR.
 
 ### Inference
