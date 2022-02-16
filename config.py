@@ -20,7 +20,7 @@ onnxruntime_output_file = 'result/onnxruntime_inference.npy'
 # PyTorch inference
 pytorch_model = 'model_pytorch/model.pth'
 kit_model = 'model_pytorch/kit_model.py'
-pytorch_output_file = 'result/pytorch_inference.txt'
+pytorch_output_file = 'result/pytorch_inference.npy'
 
 # Test converted ONNX model
 test_mxnet_onnx_log = 'outputs_comparison/mxnet_onnx_test.txt'

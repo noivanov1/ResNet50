@@ -33,7 +33,7 @@ parser.add_argument("--pytorch_model_output", default=config.pytorch_output_file
 parser.add_argument("--test_mx_onnx", default=config.test_mxnet_onnx_log, type=str, help="write test log file")
 
 # Test MXNet ONNX outputs
-parser.add_argument("--test_mx_pytorch", default=config.test_mxnet_onnx_log, type=str, help="write test log file")
+parser.add_argument("--test_mx_pytorch", default=config.test_mxnet_pytorch_log, type=str, help="write test log file")
 
 args = parser.parse_args()
 
