@@ -37,7 +37,7 @@ def main():
     converted_model = conversion_mxnet2onnx(args_parser.args.prefix, args_parser.args.onnx_model,
                                             literal_eval(str(args_parser.args.input_shape)))
     log_txt = create_log()
-    write_logfile(args_parser.args.log_conversion, log_txt)
+    write_logfile(args_parser.args.conversion_log, log_txt)
     print(f"Done! Check {converted_model} and {args_parser.args.log_conversion}")
 
 

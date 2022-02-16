@@ -42,7 +42,7 @@ where _***_ is **18**, **34**, **50**, **101** or **152**.<br/><br/>
 Set parameters for running inferences via command line or in **_config.py_** as default values.
 
 ```console
-python3 mxnet2onnx.py --prefix model_mxnet/model --onnx_model model_onnx/converted_model.onnx --input_shape 1,3,112,112 --log_conversion result/mxnet2onnx_log.txt
+python3 mxnet2onnx.py --prefix model_mxnet/model --onnx_model model_onnx/converted_model.onnx --input_shape 1,3,112,112 --conversion_log result/mxnet2onnx_log.txt
 ```
 
 
@@ -67,7 +67,7 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 
 ### Embeddings comparison
 ```console
-python3 test_converted_outputs.py
+python3 test_converted_outputs.py --test_log result/emb_test_log.txt
 ```
 #### ResNet-18
 | MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |

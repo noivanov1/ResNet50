@@ -9,7 +9,7 @@ parser.add_argument("--input_shape", default=[config.input_shape[2], config.inpu
                     help="input shape of the model")
 
 # MXNet to ONNX conversion
-parser.add_argument("--log_conversion", default=config.mxnet2onnx_log, type=str, help="write conversion log file")
+parser.add_argument("--conversion_log", default=config.mxnet2onnx_log, type=str, help="write conversion log file")
 parser.add_argument("--onnx_model", default=config.onnx_model_name, type=str, help="name of converted ONNX model")
 
 # MXNet model
@@ -22,5 +22,11 @@ parser.add_argument("--onnx_mx_model_output", default=config.onnx_mxnet_output_f
                     help="write embedding to file")
 parser.add_argument("--onnxruntime_model_output", default=config.onnxruntime_output_file, type=str,
                     help="write embedding to file")
+
+# Test outputs
+parser.add_argument("--test_log", default=config.test_embeddings_log, type=str, help="write test log file")
+
 args = parser.parse_args()
+
+
 

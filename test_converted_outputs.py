@@ -1,5 +1,6 @@
 import numpy as np
 import config
+import args_parser
 
 from tools import write_logfile
 from prettytable import PrettyTable
@@ -51,8 +52,8 @@ def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: fl
     """
     headers = ["MAX Errors to original MXNet model ", "Max Absolute error", "Max Relative error"]
     log_table = PrettyTable(headers)
-    log_table.add_row(["ONNX (MXNet back) inference", f"{max_abs_onnx:.9f}", f"{max_rel_onnx:.9f}"])
-    log_table.add_row(["ONNX Runtime inference", f"{max_abs_onnxruntime:.9f}", f"{max_rel_onnxruntime:.9f}"])
+    log_table.add_row(["ONNX (MXNet back) inference", f"{max_abs_onnx:.10f}", f"{max_rel_onnx:.10f}"])
+    log_table.add_row(["ONNX Runtime inference", f"{max_abs_onnxruntime:.10f}", f"{max_rel_onnxruntime:.10f}"])
     return log_table.get_string()
 
 
@@ -69,10 +70,10 @@ def main():
     max_rel_onnx = relative_error(mxnet_embedding, onnx_mxnet_embedding)
     max_rel_onnxruntime = relative_error(mxnet_embedding, onnxruntime_embedding)
 
-    test_log = create_log(max_abs_onnx, max_abs_onnxruntime, max_rel_onnx, max_rel_onnxruntime)
-    write_logfile(config.test_embeddings_log, test_log)
+    test_log_table = create_log(max_abs_onnx, max_abs_onnxruntime, max_rel_onnx, max_rel_onnxruntime)
+    write_logfile(args_parser.args.test_log, test_log_table)
 
-    print(f'Done! Check {config.test_embeddings_log}')
+    print(f'Done! Check {args_parser.args.test_log}')
 
 
 if __name__ == "__main__":
