@@ -77,7 +77,7 @@ python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --
 ### Embeddings comparison
 
 ```console
-python3 test_converted_outputs.py --test_log result/emb_test_log.txt
+python3 outputs_comparison/test_mxnet_onnx_outputs.py --test_mx_onnx outputs_comparison/mxnet_onnx_test.txt
 ```
 
 #### ResNet-18
@@ -147,3 +147,6 @@ python3 pytorch_inference.py --pytorch_model model_pytorch/model.pth --kit_model
 ```
 
 ### Embeddings comparison
+```console
+python3 outputs_comparison/test_mxnet_pytorch_outputs.py --test_mx_pytorch outputs_comparison/mxnet_pytorch_test.txt
+```

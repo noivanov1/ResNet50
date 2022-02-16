@@ -29,8 +29,11 @@ parser.add_argument("--kit_model", default=config.kit_model, type=str, help="nam
 parser.add_argument("--pytorch_model_output", default=config.pytorch_output_file, type=str,
                     help="write embedding to file")
 
-# Test outputs
-parser.add_argument("--test_log", default=config.test_embeddings_log, type=str, help="write test log file")
+# Test MXNet ONNX outputs
+parser.add_argument("--test_mx_onnx", default=config.test_mxnet_onnx_log, type=str, help="write test log file")
+
+# Test MXNet ONNX outputs
+parser.add_argument("--test_mx_pytorch", default=config.test_mxnet_onnx_log, type=str, help="write test log file")
 
 args = parser.parse_args()
 

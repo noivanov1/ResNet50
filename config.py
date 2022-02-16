@@ -22,5 +22,8 @@ pytorch_model = 'model_pytorch/model.pth'
 kit_model = 'model_pytorch/kit_model.py'
 pytorch_output_file = 'result/pytorch_inference.txt'
 
-# Test converted models
-test_embeddings_log = 'result/emb_test_log.txt'
+# Test converted ONNX model
+test_mxnet_onnx_log = 'outputs_comparison/mxnet_onnx_test.txt'
+
+# Test converted ONNX model
+test_mxnet_pytorch_log = 'outputs_comparison/mxnet_pytorch_test.txt'
