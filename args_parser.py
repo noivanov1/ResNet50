@@ -23,6 +23,12 @@ parser.add_argument("--onnx_mx_model_output", default=config.onnx_mxnet_output_f
 parser.add_argument("--onnxruntime_model_output", default=config.onnxruntime_output_file, type=str,
                     help="write embedding to file")
 
+# PyTorch model
+parser.add_argument("--pytorch_model", default=config.pytorch_model, type=str, help="name of converted PyTorch model")
+parser.add_argument("--kit_model", default=config.kit_model, type=str, help="name of kit_model")
+parser.add_argument("--pytorch_model_output", default=config.pytorch_output_file, type=str,
+                    help="write embedding to file")
+
 # Test outputs
 parser.add_argument("--test_log", default=config.test_embeddings_log, type=str, help="write test log file")
 
