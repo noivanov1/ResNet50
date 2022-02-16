@@ -1,13 +1,13 @@
 Project for conversion **MXNet** ResNet to **ONNX** framework.
 
 
-| Models     | ONNX| PyTorch |
-|------------|-------------------------|---------|
-| ResNet-18  | &check;                 |         |
-| ResNet-34  | &check;                 |         |
-| ResNet-50  | &check;                 |         |
-| ResNet-101 | &check;                 |         |
-| ResNet-152 | &check;                 |         |
+| Models     | ONNX    | PyTorch |
+|------------|---------|---------|
+| ResNet-18  | &check; |         |
+| ResNet-34  | &check; |         |
+| ResNet-50  | &check; |         |
+| ResNet-101 | &check; |         |
+| ResNet-152 | &check; |         |
 
 ## Requirements
 

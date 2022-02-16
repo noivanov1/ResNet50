@@ -1,6 +1,9 @@
 mxnet==1.6.0
 onnx==1.6.0
 onnxruntime==1.6.0
+torch==1.4.0
+torchvision==0.5.0
+mmdnn==0.3.1
 prettytable==2.5.0
 pillow==8.4.0
 numpy~=1.19.5
