@@ -10,7 +10,7 @@ def main():
     input_image = preprocess_image(args_parser.args.input_image, literal_eval(str(args_parser.args.input_shape)))
     model_out = get_model_output_onnxruntime(loaded_onnx_model, input_image)
     write_output(args_parser.args.onnxruntime_model_output, model_out)
-    print(f'Done! Check {config.onnxruntime_output_file}')
+    print(f'Done! Check {args_parser.args.onnxruntime_model_output}')
 
 
 if __name__ == "__main__":

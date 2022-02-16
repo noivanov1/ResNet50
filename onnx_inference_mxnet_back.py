@@ -12,7 +12,7 @@ def main():
     loaded_model = load_model_onnx(ctx, args_parser.args.onnx_model, literal_eval(str(args_parser.args.input_shape)))
     model_out = get_model_output_onnx_mxnet(loaded_model, input_image)
     write_output(args_parser.args.onnx_mx_model_output, model_out)
-    print(f'Done! Check {config.onnx_mxnet_output_file}')
+    print(f'Done! Check {args_parser.args.onnx_mx_model_output}')
 
 
 if __name__ == "__main__":
