@@ -8,13 +8,9 @@ from prettytable import PrettyTable
 
 def read_embedding_file(embedding_file: str) -> np.ndarray:
     """
-    Read embeddings from file.
+    Read embeddings from .npy file.
     """
-    embedding = []
-    with open(embedding_file) as file:
-        for element in file:
-            embedding.append(float(element))
-    return np.asarray(embedding)
+    return np.load(embedding_file)
 
 
 def dim_test(vector_1: np.ndarray, vector_2: np.ndarray, vector_3: np.ndarray):

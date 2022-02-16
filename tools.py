@@ -77,7 +77,7 @@ def save_output(file_name: str, model_out: np.ndarray):
     """
     Write embedding to .npy file
     """
-    np.save('file_name', np.asarray(model_out))
+    np.save(file_name, np.asarray(model_out))
 
 
 def write_logfile(file_name: str, log_txt: str):
