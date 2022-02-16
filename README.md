@@ -50,18 +50,18 @@ python3 mxnet2onnx.py --prefix model_mxnet/model --onnx_model model_onnx/convert
 
 #### MXNet
 ```console
-python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112 --mxnet_model_output  result/mxnet_inference.txt
+python3 mxnet_inference.py --prefix model_mxnet/model --epoch 0 --input_image photo.bmp --input_shape 112,112 --mxnet_model_output  result/mxnet_inference.npy
 ```
 
 #### ONNX (MXNet back)
 ```console
-python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --onnx_mx_model_output  result/onnx_mxnet_inference.txt
+python3 onnx_inference_mxnet_back.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --onnx_mx_model_output  result/onnx_mxnet_inference.npy
 ```
 
 
 #### ONNX Runtime
 ```console
-python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --onnxruntime_model_output  result/onnxruntime_inference.txt 
+python3 onnxruntime_inference.py --onnx_model model_onnx/converted_model.onnx --input_image photo.bmp --input_shape 112,112 --onnxruntime_model_output  result/onnxruntime_inference.npy 
 ```
 
 

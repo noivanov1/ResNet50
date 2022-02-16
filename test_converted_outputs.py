@@ -52,8 +52,8 @@ def create_log(max_abs_onnx: float, max_abs_onnxruntime: float, max_rel_onnx: fl
     """
     headers = ["MAX Errors to original MXNet model ", "Max Absolute error", "Max Relative error"]
     log_table = PrettyTable(headers)
-    log_table.add_row(["ONNX (MXNet back) inference", f"{max_abs_onnx:.10f}", f"{max_rel_onnx:.10f}"])
-    log_table.add_row(["ONNX Runtime inference", f"{max_abs_onnxruntime:.10f}", f"{max_rel_onnxruntime:.10f}"])
+    log_table.add_row(["ONNX (MXNet back) inference", max_abs_onnx, max_rel_onnx])
+    log_table.add_row(["ONNX Runtime inference", max_abs_onnxruntime, max_rel_onnxruntime])
     return log_table.get_string()
 
 

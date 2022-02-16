@@ -73,13 +73,11 @@ def get_model_output_onnxruntime(loaded_model, input_image):
     return sess.run(None, feed1)[0][0]
 
 
-def write_output(file_name: str, model_out: np.ndarray):
+def save_output(file_name: str, model_out: np.ndarray):
     """
-    Write embedding to .txt file
+    Write embedding to .npy file
     """
-    with open(file_name, 'w') as out:
-        for i in range(len(model_out)):
-            out.write(str(f"{model_out[i]:.10f}") + '\n')
+    np.save('file_name', np.asarray(model_out))
 
 
 def write_logfile(file_name: str, log_txt: str):

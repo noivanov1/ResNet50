@@ -11,15 +11,15 @@ mxnet2onnx_log = 'result/mxnet2onnx_log.txt'
 
 # MXNet inference
 epoch = 0
-mxnet_output_file = 'result/mxnet_inference.txt'
+mxnet_output_file = 'result/mxnet_inference.npy'
 
 
 # ONNX (MXNet back) inference
-onnx_mxnet_output_file = 'result/onnx_mxnet_inference.txt'
+onnx_mxnet_output_file = 'result/onnx_mxnet_inference.npy'
 
 
 # ONNX Runtime inference
-onnxruntime_output_file = 'result/onnxruntime_inference.txt'
+onnxruntime_output_file = 'result/onnxruntime_inference.npy'
 
 # Test converted models
 test_embeddings_log = 'result/emb_test_log.txt'
