@@ -1,6 +1,8 @@
 import mxnet as mx
 import onnx
 import onnxruntime
+import torch
+import imp
 import numpy as np
 
 
@@ -21,6 +23,14 @@ def preprocess_image(image_name: str, resize_shape: Tuple[int, int]) -> np.ndarr
     image = np.swapaxes(image, 1, 2)  # change to (c, h,w) order
     image = np.expand_dims(image, axis=0).astype(np.float32)
     return image
+
+
+def preprocess_torch_image(image_array: np.ndarray, device: torch.device) -> torch.Tensor:
+    """
+    Preprocessing the image for pytorch model
+    """
+    image_tensor = torch.from_numpy(image_array)
+    return image_tensor.to(device)
 
 
 def load_model_mxnet(ctx: mx.context.Context, model_prefix: str, epoch: int, image: np.ndarray) -> \
@@ -54,6 +64,16 @@ def load_model_onnxruntime(onnx_model_name: str) -> onnx.onnx_ONNX_REL_1_6_ml_pb
     return onnx.load(onnx_model_name)
 
 
+def load_model_pytorch(kit_model: str, pytorch_model: str, device: torch.device):
+    """
+    Load PyTorch model
+    """
+    MainModel = imp.load_source('MainModel', kit_model)
+    model = torch.load(pytorch_model).to(device)
+    model.eval()
+    return model
+
+
 def get_model_output_onnx_mxnet(model: mx.module.module.Module, image: np.ndarray) -> np.ndarray:
     """
     Predict embedding
@@ -71,6 +91,15 @@ def get_model_output_onnxruntime(loaded_model, input_image):
     sess = onnxruntime.InferenceSession(content)
     feed1 = {sess.get_inputs()[0].name: input_image}
     return sess.run(None, feed1)[0][0]
+
+
+def get_model_output_pytorch(model, image: torch.Tensor) -> np.ndarray:
+    """
+    Predict PyTorch embedding
+    """
+    with torch.no_grad():
+        output = model(image)
+    return output[0].numpy()
 
 
 def save_output(file_name: str, model_out: np.ndarray):
