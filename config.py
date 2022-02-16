@@ -19,7 +19,7 @@ onnxruntime_output_file = 'result/onnxruntime_inference.npy'
 
 # PyTorch inference
 pytorch_model = 'model_pytorch/model.pth'
-kit_model = 'kit_model/kit_model.py'
+kit_model = 'model_pytorch/kit_model.py'
 pytorch_output_file = 'result/pytorch_inference.txt'
 
 # Test converted models

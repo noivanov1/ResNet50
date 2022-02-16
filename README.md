@@ -9,7 +9,7 @@ Project for conversion **MXNet** ResNet to **ONNX** framework.
 | ResNet-101 | &check; |         |
 | ResNet-152 | &check; |         |
 
-## Requirements
+# Requirements
 
 python 3.6 \
 mxnet 1.6 \
@@ -18,20 +18,14 @@ onnxruntime 1.6 \
 prettytable 2.5 \
 pillow 8.4
 
-## Environment
+
+# Environment
 
 1. Create **_venv_** and install packages
 
 ```console
 pip install --upgrade pip
 pip install -r requirements.txt
-```
-
-2. Patch mxnet package (to resolve conversion problems) via
-
-```console
-patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
-patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/onnx2mx/_op_translations.patch
 ```
 
 3. Download ResNet-_***_ model
@@ -45,9 +39,16 @@ where _***_ is **18**, **34**, **50**, **101** or **152**.<br/><br/>
 
 4. Put **MXNet model** in _model_mxnet/_
 
-### Conversion
+## Conversion MXNet to ONNX
+1. Patch mxnet package (to resolve conversion problems) via
 
-Set parameters for running inferences via command line or in **_config.py_** as default values.
+```console
+patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/mx2onnx/_op_translations.py -i patch_files/mx2onnx/_op_translations.patch
+patch -u venv/lib/python3.6/site-packages/mxnet/contrib/onnx/onnx2mx/_op_translations.py -i patch_files/onnx2mx/_op_translations.patch
+```
+
+
+2. Set parameters for running inferences via command line or in **_config.py_** as default values.
 
 ```console
 python3 mxnet2onnx.py --prefix model_mxnet/model --onnx_model model_onnx/converted_model.onnx --input_shape 1,3,112,112 --conversion_log result/mxnet2onnx_log.txt
@@ -125,3 +126,13 @@ More on
 
 * https://github.com/apache/incubator-mxnet/pull/18846/files
 * https://github.com/apache/incubator-mxnet/commit/f1a6df82a40d1d9e8be6f7c3f9f4dcfe75948bd6
+
+
+## Conversion MXNet to PyTorch
+Set parameters for running inferences via command line.
+```console
+python3 -m mmdnn.conversion._script.convertToIR -f mxnet -n model_mxnet/model-symbol.json -w model_mxnet/model-0000.params -d pytorch_IR/model_IR/model_IR --inputShape 3,112,112
+python3 -m mmdnn.conversion._script.IRToCode -f pytorch --IRModelPath pytorch_IR/model_IR/model_IR.pb --dstModelPath pytorch_IR/kit_model/kit_model.py --IRWeightPath pytorch_IR/model_IR/model_IR.npy -dw pytorch_IR/kit_model/kit_model.npy
+python3 -m mmdnn.conversion.examples.pytorch.imagenet_test --dump model_pytorch/model.pth -n pytorch_IR/kit_model/kit_model.py -w pytorch_IR/kit_model/kit_model.npy
+cp pytorch_IR/kit_model/kit_model.py model_pytorch/kit_model.py
+```
