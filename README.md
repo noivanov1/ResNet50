@@ -82,38 +82,11 @@ python3 outputs_comparison/test_mxnet_onnx_outputs.py --test_mx_onnx outputs_com
 
 #### ResNet-18
 
-| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
-|------------------------------------------------|--------------------|--------------------|
-| ONNX (MXNet back)                              | 3.1292439e-07      | 5.1167663e-06      |
-| ONNX Runtime                                   | 3.427267e-07       | 8.104576e-06       |
+| MAX Errors to original <br/>MXNet model output | ResNet-18 <br/>ONNX (MXNet back) | ResNet-18 <br/>ONNX Runtime | ResNet-34 <br/> ONNX (MXNet back) | ResNet-34 <br/>ONNX Runtime | ResNet-50 <br/> ONNX (MXNet back) | ResNet-50 <br/>ONNX Runtime | ResNet-101 <br/> ONNX (MXNet back) | ResNet-101 <br/>ONNX Runtime | ResNet-152 <br/> ONNX (MXNet back) | ResNet-152 <br/>ONNX Runtime |
+|------------------------------------------------|----------------------------------|-----------------------------|-----------------------------------|-----------------------------|-----------------------------------|-----------------------------|------------------------------------|------------------------------|------------------------------------|------------------------------|
+| Max Absolute error                             | 3.1292439e-07                    | 3.427267e-07                | 7.1525574e-07                     | 2.2053719e-06               | 2.4560359e-06                     | 2.4571855e-06               | 3.017485e-07                       | 1.3113022e-06                | 5.9604645e-07                      | 8.34465e-07                  |
+| Max Relative error                             | 5.1167663e-06                    | 8.104576e-06                | 7.5552675e-06                     | 1.1943803e-05               | 0.09271766                        | 0.092712365                 | 6.6753587e-06                      | 1.8716055e-05                | 6.8306026e-06                      | 1.591998e-05                 |
 
-#### ResNet-34
-
-| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
-|------------------------------------------------|--------------------|--------------------|
-| ONNX (MXNet back)                              | 7.1525574e-07      | 7.5552675e-06      |
-| ONNX Runtime                                   | 2.2053719e-06      | 1.1943803e-05      |
-
-#### ResNet-50
-
-| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
-|------------------------------------------------|--------------------|--------------------|
-| ONNX (MXNet back)                              | 2.4560359e-06      | 0.09271766         |
-| ONNX Runtime                                   | 2.4571855e-06      | 0.092712365        |
-
-#### ResNet-101
-
-| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
-|------------------------------------------------|--------------------|--------------------|
-| ONNX (MXNet back)                              | 3.017485e-07       | 6.6753587e-06      |
-| ONNX Runtime                                   | 1.3113022e-06      | 1.8716055e-05      |
-
-#### ResNet-152
-
-| MAX Errors to original <br/>MXNet model output | Max Absolute error | Max Relative error |
-|------------------------------------------------|--------------------|--------------------|
-| ONNX (MXNet back)                              | 5.9604645e-07      | 6.8306026e-06      |
-| ONNX Runtime                                   | 8.34465e-07        | 1.591998e-05       |
 
 ### Conversion problems
 
