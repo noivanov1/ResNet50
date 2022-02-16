@@ -137,16 +137,32 @@ python3 -m mmdnn.conversion.examples.pytorch.imagenet_test --dump model_pytorch/
 cp pytorch_IR/kit_model/kit_model.py model_pytorch/kit_model.py
 ```
 
+##### Warnings
+**Warning**: MXNet Parser has not supported operator null with name data.
+**Warning**: convert the null operator with name [data] into input layer.
+**Warning**: SoftmaxOutput attrs are not supported in IR.
+
 ### Inference
 
 Inference MXNet is same as [MXNet](###MXNet).
 
 #### PyTorch
 ```console
-python3 pytorch_inference.py --pytorch_model model_pytorch/model.pth --kit_model model_pytorch/kit_model.py --input_image photo.bmp --input_shape 112,112 --pytorch_model_output  result/pytorch_inference.txt
+python3 pytorch_inference.py --pytorch_model model_pytorch/model.pth --kit_model model_pytorch/kit_model.py --input_image photo.bmp --input_shape 112,112 --pytorch_model_output  result/pytorch_inference.npy
 ```
 
 ### Embeddings comparison
 ```console
 python3 outputs_comparison/test_mxnet_pytorch_outputs.py --test_mx_pytorch outputs_comparison/mxnet_pytorch_test.txt
 ```
+
+
+| MAX Errors PyTorch modelto original <br/>MXNet model output | Max Absolute error | Max Relative error |
+|-------------------------------------------------------------|--------------------|--------------------|
+| ResNet-18                                                   | 2.30968e-07        | 1.1440713e-05      |
+| ResNet-34                                                   | 1.7881393e-06      | 1.8272698e-05      |
+| ResNet-50                                                   | 8.34465e-07        | 2.2009388e-05      |
+| ResNet-101                                                  | 4.172325e-07       | 1.54404e-05        |
+| ResNet-152                                                  | 6.556511e-07       | 1.5342264e-05      |
+
+
