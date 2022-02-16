@@ -1,5 +1,4 @@
 import mxnet as mx
-import config
 import args_parser
 
 from tools import load_model_mxnet, preprocess_image, get_model_output_onnx_mxnet, save_output
