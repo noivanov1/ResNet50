@@ -136,3 +136,14 @@ python3 -m mmdnn.conversion._script.IRToCode -f pytorch --IRModelPath pytorch_IR
 python3 -m mmdnn.conversion.examples.pytorch.imagenet_test --dump model_pytorch/model.pth -n pytorch_IR/kit_model/kit_model.py -w pytorch_IR/kit_model/kit_model.npy
 cp pytorch_IR/kit_model/kit_model.py model_pytorch/kit_model.py
 ```
+
+### Inference
+
+Inference MXNet is same as [MXNet](###MXNet).
+
+#### PyTorch
+```console
+python3 pytorch_inference.py --pytorch_model model_pytorch/model.pth --kit_model model_pytorch/kit_model.py --input_image photo.bmp --input_shape 112,112 --pytorch_model_output  result/pytorch_inference.txt
+```
+
+### Embeddings comparison
