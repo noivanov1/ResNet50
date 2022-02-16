@@ -1,5 +1,4 @@
 import args_parser
-import config
 
 from tools import preprocess_image, load_model_onnxruntime, get_model_output_onnxruntime, save_output
 from ast import literal_eval
