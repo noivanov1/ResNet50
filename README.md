@@ -99,7 +99,7 @@ python3 outputs_comparison/test_mxnet_onnx_outputs.py --test_mx_onnx outputs_com
 * _**BroadcastIterator:**:Init(int64_t, int64_t) axis == 1 || axis == largest was false. Attempting to broadcast an axis
   by a dimension other than 1. 64 by 112_
 
-Resolved by patching [Conversion MXNet to ONNX](#Conversion MXNet to ONNX) par. 1. \
+Resolved by patching \
 More on
 
 * https://github.com/apache/incubator-mxnet/pull/18846/files
