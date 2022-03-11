@@ -34,7 +34,7 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-3. Download ResNet-_***_ model
+2. Download ResNet-_***_ model
 
 ```console
 wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-0000.params
@@ -43,7 +43,7 @@ wget http://data.mxnet.io/models/imagenet/resnet/***-layers/resnet-***-symbol.js
 
 where _***_ is **18**, **34**, **50**, **101** or **152**.<br/><br/>
 
-4. Put **MXNet model** in _model_mxnet/_
+3. Put **MXNet model** in _model_mxnet/_
 
 ## Conversion MXNet to ONNX
 1. Patch mxnet package (to resolve conversion problems) via
